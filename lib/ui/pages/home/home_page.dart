@@ -3,13 +3,14 @@ import 'package:flutter/services.dart';
 import 'package:mvvm_builder/mvvm_builder.dart';
 import 'package:pal_demo_app/ui/widgets/moviecard.dart';
 
+import '../../../routes.dart';
 import 'home_model.dart';
 import 'home_presenter.dart';
 
 abstract class HomeView {
-  void pushToRoute1(final BuildContext context);
 
-  void pushToRoute2(final BuildContext context);
+  void pushMoviePage(final BuildContext context);
+
 }
 
 
@@ -21,24 +22,16 @@ class HomePage extends StatelessWidget implements HomeView {
     return MVVMPage<HomePresenter, HomeModel>(
       key: ValueKey('demo_HomePage'),
       presenter: HomePresenter(this),
-      builder: (context, presenter, model) {
-        return AnnotatedRegion<SystemUiOverlayStyle>(
-          value: SystemUiOverlayStyle.light,
-          child: Scaffold(
-            backgroundColor: Theme.of(context.buildContext).backgroundColor,
-            body: SingleChildScrollView(
-              child: SafeArea(
-                child: this._buildPage(
-                  context.buildContext,
-                  presenter,
-                  model,
-                ),
-              ),
+      builder: (context, presenter, model)
+        => SingleChildScrollView(
+          child: SafeArea(
+            child: this._buildPage(
+              context.buildContext,
+              presenter,
+              model,
             ),
-            bottomNavigationBar: _buildBottomBar(context.buildContext),
           ),
-        );
-      },
+        ),
     );
   }
 
@@ -54,7 +47,7 @@ class HomePage extends StatelessWidget implements HomeView {
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: GestureDetector(
-            onTap: () => pushToRoute1(context),
+            onTap: () => pushMoviePage(context),
             child: MovieCard(
               'assets/images/joker.jpg', 340,
               title: "Joker",
@@ -102,7 +95,7 @@ class HomePage extends StatelessWidget implements HomeView {
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 8, 8, 16),
               child: GestureDetector(
-                onTap: () => pushToRoute2(context),
+                onTap: () => pushMoviePage(context),
                 child: MovieCard(
                   'assets/images/donnie-darko.jpg', 200,
                   title: 'Donnie darko',
@@ -145,7 +138,7 @@ class HomePage extends StatelessWidget implements HomeView {
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 8, 8, 16),
             child: GestureDetector(
-              onTap: () => pushToRoute2(context),
+              onTap: () => pushMoviePage(context),
               child: MovieCard(
                 'assets/images/bohemian.jpg', 200,
                 title: 'Bohemian rhapsody',
@@ -177,46 +170,7 @@ class HomePage extends StatelessWidget implements HomeView {
     );
   }
 
-  _buildBottomBar(BuildContext context) {
-    return BottomNavigationBar(
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.home,
-            color: Colors.blueGrey,
-          ),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.school),
-          label: 'Quizz',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.account_circle_rounded),
-          label: 'Profile',
-        ),
-      ],
-      currentIndex: 0,
-      backgroundColor: Color(0xFF121A23),
-      type: BottomNavigationBarType.fixed,
-      selectedIconTheme: new IconThemeData(
-        color: Theme.of(context).accentColor,
-      ),
-      selectedItemColor: Theme.of(context).accentColor,
-      unselectedItemColor: Colors.blueGrey[300],
-      // onTap: _onItemTapped,
-    );
-  }
-
   @override
-  void pushToRoute1(BuildContext context) {
-    Navigator.pushNamed(context, '/route1');
-  }
-
-  @override
-  void pushToRoute2(BuildContext context) {
-    Navigator.pushNamed(context, '/route2');
-  }
-
+  void pushMoviePage(BuildContext context) => appPushNamed('/movie');
 
 }
