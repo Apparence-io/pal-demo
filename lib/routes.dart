@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pal_demo_app/ui/pages/library/library.dart';
 
 import 'ui/pages/home/home_page.dart';
 import 'ui/pages/main_menu.dart';
@@ -20,7 +21,7 @@ Route<dynamic> routes(RouteSettings settings) {
               pageBuilder: (context) => HomePage(),
               settings: RouteSettings(name: '/home')),
             MenuRoute(label: "Library", icon: Icons.video_library_rounded, path: '/library',
-              pageBuilder: (context) => ProfilePage(),
+              pageBuilder: (context) => LibraryPage(),
               settings: RouteSettings(name: '/profile')),
             MenuRoute(label: "Profile", icon: Icons.person, path: '/profile',
               pageBuilder: (context) => ProfilePage(),

@@ -39,7 +39,7 @@ class MovieCard extends StatelessWidget {
         child: Align(
           alignment: Alignment.bottomCenter,
           child: Container(
-            height: secondary ? 50 : 88,
+            height: secondary ? 60 : 88,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                 bottomRight: Radius.circular(5),
