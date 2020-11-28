@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 abstract class MenuRoutePath {}
 
@@ -33,13 +34,16 @@ class PageWithMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-      body: Router(
-        routerDelegate: menuRouterDelegate,
-      ),
-      bottomNavigationBar: _buildBottomBar(context),
-    );
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: Scaffold(
+          backgroundColor: Theme.of(context).backgroundColor,
+          body: Router(
+            routerDelegate: menuRouterDelegate,
+          ),
+          bottomNavigationBar: _buildBottomBar(context),
+        )
+      );
   }
 
   _buildBottomBar(BuildContext context) {

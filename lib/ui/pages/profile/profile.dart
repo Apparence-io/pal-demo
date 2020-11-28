@@ -23,21 +23,24 @@ class ProfilePage extends StatelessWidget implements ProfileView {
       presenter: ProfilePresenter(
         this,
       ),
-      builder: (context, presenter, model) => Container(
-        child: Column(
-          children: [
-            Text(
-              "My profile",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                height: 1,
-                color: model.textColor.withOpacity(0.8),
-                fontSize: 16
-              ),
+      builder: (context, presenter, model) =>
+        SafeArea(
+          child: Container(
+            child: Column(
+              children: [
+                Text(
+                  "My profile",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    height: 1,
+                    color: model.textColor.withOpacity(0.8),
+                    fontSize: 16
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ), //TODO
+          ),
+        ), //TODO
     );
   }
 }
