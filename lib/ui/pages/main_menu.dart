@@ -4,24 +4,16 @@ import 'package:flutter/services.dart';
 abstract class MenuRoutePath {}
 
 class MenuRoute {
-
   String label;
   IconData icon;
   String path;
   WidgetBuilder pageBuilder;
   RouteSettings settings;
 
-  MenuRoute({
-    @required this.label,
-    @required this.icon,
-    @required this.path,
-    @required this.pageBuilder,
-    @required this.settings
-  });
+  MenuRoute({@required this.label, @required this.icon, @required this.path, @required this.pageBuilder, @required this.settings});
 }
 
 class PageWithMenu extends StatelessWidget {
-
   final List<MenuRoute> routes;
 
   final ValueNotifier<int> state;
@@ -29,8 +21,8 @@ class PageWithMenu extends StatelessWidget {
   final MenuRouterDelegate menuRouterDelegate;
 
   PageWithMenu({@required this.routes})
-    : this.menuRouterDelegate = MenuRouterDelegate(routes),
-      this.state = ValueNotifier(0);
+      : this.menuRouterDelegate = MenuRouterDelegate(routes),
+        this.state = ValueNotifier(0);
 
   @override
   Widget build(BuildContext context) {
@@ -42,19 +34,23 @@ class PageWithMenu extends StatelessWidget {
             routerDelegate: menuRouterDelegate,
           ),
           bottomNavigationBar: _buildBottomBar(context),
-        )
-      );
+        ));
   }
 
   _buildBottomBar(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: state,
-      builder: (ctx, value, child ) {
+      builder: (ctx, value, child) {
         return BottomNavigationBar(
-          items: routes.map((route) => BottomNavigationBarItem(
-            icon: Icon(route.icon),
-            label: route.label,
-          )).toList(),
+          items: routes
+              .map((route) => BottomNavigationBarItem(
+                    icon: Icon(
+                      route.icon,
+                      key: ValueKey("${route.icon}"),
+                    ),
+                    label: route.label,
+                  ))
+              .toList(),
           currentIndex: value,
           backgroundColor: Color(0xFF121A23),
           type: BottomNavigationBarType.fixed,
@@ -71,14 +67,10 @@ class PageWithMenu extends StatelessWidget {
         );
       },
     );
-
   }
 }
 
-
-
 class MenuRouterDelegate extends RouterDelegate<MenuRoutePath> with ChangeNotifier, PopNavigatorRouterDelegateMixin<MenuRoutePath> {
-
   final List<MenuRoute> routes;
 
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -92,25 +84,19 @@ class MenuRouterDelegate extends RouterDelegate<MenuRoutePath> with ChangeNotifi
 
   @override
   Widget build(BuildContext context) {
-      return Navigator(
+    return Navigator(
         key: navigatorKey,
         initialRoute: routes.first.path,
         onGenerateRoute: (RouteSettings settings) {
-          var searchedRoute = routes
-            .firstWhere((element) => element.path == settings.name, orElse: () => routes.first);
-          return MaterialPageRoute(
-            builder: searchedRoute.pageBuilder,
-            settings: searchedRoute.settings
-          );
-        }
-      );
+          var searchedRoute = routes.firstWhere((element) => element.path == settings.name, orElse: () => routes.first);
+          return MaterialPageRoute(builder: searchedRoute.pageBuilder, settings: searchedRoute.settings);
+        });
   }
 
   @override
   Future<void> setNewRoutePath(MenuRoutePath configuration) async {
     print("setNewRoutePath ${configuration.toString()}");
   }
-
 }
 
 class FadeAnimationPage extends Page {
@@ -134,7 +120,6 @@ class FadeAnimationPage extends Page {
 }
 
 class PageFake extends StatelessWidget {
-
   final Color bgColor;
 
   PageFake(this.bgColor);

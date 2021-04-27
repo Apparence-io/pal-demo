@@ -8,7 +8,11 @@ import 'ui/pages/profile/profile.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-Future appPushNamed(String route, {Object arguments}) => navigatorKey.currentState.pushNamed(route, arguments: arguments);
+Future appPushNamed(String route, {Object arguments})
+  => navigatorKey.currentState.pushNamed(route, arguments: arguments);
+
+Future appPush(WidgetBuilder builder, String name) => navigatorKey.currentState
+    .push(MaterialPageRoute(builder: builder, settings: RouteSettings(name: name)));
 
 Route<dynamic> routes(RouteSettings settings) {
   switch (settings.name) {
