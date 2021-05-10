@@ -5,15 +5,24 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Flutter",
-            "type": "dart",
+            "name": "[editor mode] start",
             "request": "launch",
-            "program": "lib/main.dart"
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--dart-define",
+                "PAL_LAUNCH_MODE=true"
+            ]
         },
         {
-            "name": "pal_demo_app",
+            "name": "[client mode] start ",
             "request": "launch",
             "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--dart-define",
+                "PAL_LAUNCH_MODE=false"
+            ]
         }
     ]
 }
