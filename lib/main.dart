@@ -19,7 +19,7 @@ class GetXMyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Pal.fromAppBuilder(
       navigatorKey: navigatorKey,
-      editorModeEnabled: true,
+      editorModeEnabled: false,
       appToken: APP_TOKEN,
       childAppBuilder: (context) => GetMaterialApp(
         navigatorKey: navigatorKey,
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Pal(
-      editorModeEnabled: false,
+      editorModeEnabled: true,
       appToken: APP_TOKEN,
       childApp: MaterialApp(
         navigatorKey: navigatorKey,

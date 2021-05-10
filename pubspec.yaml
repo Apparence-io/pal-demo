@@ -18,7 +18,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.10.5 <3.0.0"
 
 dependencies:
   flutter:
@@ -27,14 +27,11 @@ dependencies:
   cupertino_icons: ^1.0.0
   get: ^3.24.0
   google_fonts: ^2.0.0
-  mvvm_builder: ^2.1.3+2
-  # pal: ^1.0.0+1
+  mvvm_builder: ^3.0.0-null.safety
+  # pal: ^2.0.0+2
   pal: 
     path: ../../pal/pal_plugin
     
-
-dependency_overrides:
-  rxdart: ^0.26.0-nullsafety.1
 
 dev_dependencies:
   flutter_test:
