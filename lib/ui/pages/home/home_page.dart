@@ -8,11 +8,8 @@ import 'home_model.dart';
 import 'home_presenter.dart';
 
 abstract class HomeView {
-
   void pushMoviePage(final BuildContext context);
-
 }
-
 
 class HomePage extends StatelessWidget implements HomeView {
   HomePage({Key key});
@@ -20,18 +17,16 @@ class HomePage extends StatelessWidget implements HomeView {
   @override
   Widget build(BuildContext context) {
     return MVVMPage<HomePresenter, HomeModel>(
-      key: ValueKey('demo_HomePage'),
       presenter: HomePresenter(this),
-      builder: (context, presenter, model)
-        => SingleChildScrollView(
-          child: SafeArea(
-            child: this._buildPage(
-              context.buildContext,
-              presenter,
-              model,
-            ),
+      builder: (context, presenter, model) => SingleChildScrollView(
+        child: SafeArea(
+          child: this._buildPage(
+            context.buildContext,
+            presenter,
+            model,
           ),
         ),
+      ),
     );
   }
 
@@ -39,7 +34,7 @@ class HomePage extends StatelessWidget implements HomeView {
     final BuildContext context,
     final HomePresenter presenter,
     final HomeModel model,
-    ) {
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -49,7 +44,9 @@ class HomePage extends StatelessWidget implements HomeView {
           child: GestureDetector(
             onTap: () => pushMoviePage(context),
             child: MovieCard(
-              'assets/images/joker.jpg', 340,
+              'assets/images/joker.jpg',
+              340,
+              key: ValueKey('joker1'),
               title: "Joker",
               subtitle: "The beginning of the crazyest clown ever",
             ),
@@ -60,10 +57,7 @@ class HomePage extends StatelessWidget implements HomeView {
           child: Text(
             'Get a look here',
             key: ValueKey('getalook'),
-            style: TextStyle(
-              color: Theme.of(context).hintColor,
-              fontSize: 16,
-              fontWeight: FontWeight.normal),
+            style: TextStyle(color: Theme.of(context).hintColor, fontSize: 16, fontWeight: FontWeight.normal),
           ),
         ),
         _createFirstList(context),
@@ -72,59 +66,62 @@ class HomePage extends StatelessWidget implements HomeView {
           child: Text(
             'Your friends love',
             key: ValueKey('getalook2'),
-            style: TextStyle(
-              color: Theme.of(context).hintColor,
-              fontSize: 16,
-              fontWeight: FontWeight.normal),
+            style: TextStyle(color: Theme.of(context).hintColor, fontSize: 16, fontWeight: FontWeight.normal),
           ),
         ),
         _createSecondList(context),
-        Container(height: 100,),
+        Container(
+          height: 100,
+        ),
       ],
     );
   }
 
   SizedBox _createFirstList(BuildContext context) {
     return SizedBox(
-        height: 200,
-        // width: MediaQuery.of(context).size.width,
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 8, 8, 16),
-              child: GestureDetector(
-                onTap: () => pushMoviePage(context),
-                child: MovieCard(
-                  'assets/images/donnie-darko.jpg', 200,
-                  title: 'Donnie darko',
-                  subtitle: 'classic',
-                  secondary: true,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 16, 16),
+      height: 200,
+      // width: MediaQuery.of(context).size.width,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        shrinkWrap: true,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 8, 16),
+            child: GestureDetector(
+              onTap: () => pushMoviePage(context),
               child: MovieCard(
-                'assets/images/truman-show.jpg', 200,
-                title: 'The truman show',
+                'assets/images/donnie-darko.jpg',
+                200,
+                key: ValueKey("donnie"),
+                title: 'Donnie darko',
                 subtitle: 'classic',
                 secondary: true,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 16, 16),
-              child: MovieCard(
-                'assets/images/batman.jpg', 200,
-                title: 'Batman begins',
-                subtitle: 'classic',
-                secondary: true,
-              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8, 8, 16, 16),
+            child: MovieCard(
+              'assets/images/truman-show.jpg',
+              200,
+              title: 'The truman show',
+              subtitle: 'classic',
+              secondary: true,
             ),
-          ],
-        ),
-      );
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8, 8, 16, 16),
+            child: MovieCard(
+              'assets/images/batman.jpg',
+              200,
+              title: 'Batman begins',
+              subtitle: 'classic',
+              secondary: true,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   SizedBox _createSecondList(BuildContext context) {
@@ -140,7 +137,8 @@ class HomePage extends StatelessWidget implements HomeView {
             child: GestureDetector(
               onTap: () => pushMoviePage(context),
               child: MovieCard(
-                'assets/images/bohemian.jpg', 200,
+                'assets/images/bohemian.jpg',
+                200,
                 title: 'Bohemian rhapsody',
                 subtitle: 'classic',
                 secondary: true,
@@ -150,7 +148,8 @@ class HomePage extends StatelessWidget implements HomeView {
           Padding(
             padding: const EdgeInsets.fromLTRB(8, 8, 16, 16),
             child: MovieCard(
-              'assets/images/guardian.jpg', 200,
+              'assets/images/guardian.jpg',
+              200,
               title: 'Guardians of the galaxy',
               subtitle: 'classic',
               secondary: true,
@@ -159,7 +158,8 @@ class HomePage extends StatelessWidget implements HomeView {
           Padding(
             padding: const EdgeInsets.fromLTRB(8, 8, 16, 16),
             child: MovieCard(
-              'assets/images/guardian2.jpg', 200,
+              'assets/images/guardian2.jpg',
+              200,
               title: 'Guardians of the galaxy 2',
               subtitle: 'classic',
               secondary: true,
@@ -172,5 +172,4 @@ class HomePage extends StatelessWidget implements HomeView {
 
   @override
   void pushMoviePage(BuildContext context) => appPushNamed('/movie');
-
 }

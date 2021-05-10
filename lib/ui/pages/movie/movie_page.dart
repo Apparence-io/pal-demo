@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_builder/mvvm_builder.dart';
+import 'package:pal/pal.dart';
 
 class MoviePageViewModel extends MVVMModel {
 
