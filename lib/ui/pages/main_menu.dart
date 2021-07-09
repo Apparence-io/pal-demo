@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../main.dart';
 
 abstract class MenuRoutePath {}
 
@@ -29,6 +30,33 @@ class PageWithMenu extends StatelessWidget {
     return AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: Scaffold(
+          appBar: AppBar(
+            centerTitle: false,
+            title: Text(
+              "Pal - demo application",
+              style: TextStyle(fontSize: 14),
+              textAlign: TextAlign.left,
+            ),
+            backgroundColor: Theme.of(context).accentColor.withOpacity(.2),
+            actions: [
+              ValueListenableBuilder(
+                builder: (context, value, child) {
+                  return IconButton(
+                    icon: palLaunchModeNotifier.value ? const Icon(Icons.toggle_on) : const Icon(Icons.toggle_off),
+                    tooltip: palLaunchModeNotifier.value ? 'Pal Editor mode' : 'Pal Client mode',
+                    onPressed: () {
+                      palLaunchModeNotifier.value = !palLaunchModeNotifier.value;
+                      Future.delayed(Duration(milliseconds: 500), () {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(SnackBar(content: Text(palLaunchModeNotifier.value ? 'Switched to Pal editor mode' : 'Switched to Pal client mode')));
+                      });
+                    },
+                  );
+                },
+                valueListenable: palLaunchModeNotifier,
+              ),
+            ],
+          ),
           backgroundColor: Theme.of(context).backgroundColor,
           body: Router(
             routerDelegate: menuRouterDelegate,

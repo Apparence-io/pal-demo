@@ -27,8 +27,10 @@ dependencies:
   cupertino_icons: ^1.0.0
   get: ^3.24.0
   google_fonts: ^2.0.0
-  mvvm_builder: ^3.0.0-null.safety
-  pal: ^2.0.0+3
+  mvvm_builder: ^3.0.1-null.safety
+  # pal: ^2.1.0
+  pal:
+    path: ../../pal/pal_plugin
     
 dev_dependencies:
   flutter_test:
