@@ -6,6 +6,11 @@ Creates onboarding where you want on your app without code.
 
 ## [Test our demo here using flutter web](https://g-apparence.github.io/#/)
 
+> *This demo has been made for mobile, for better look and feel open it as a mobile view*<br><br>
+> **Chrome**<br>
+> *In Windows/Linux, press Ctrl+Shift+I or just F12*<br>
+> *In macOS, press option+command+I*<br>
+
 Works on Android / iOS / Web / Macos / Windows. (Well flutter is magic)
 
 <p align="left">
